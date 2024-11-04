@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>Crear un nuevo Post</h1>
-<form method="post">
+<form method="post" onsubmit="return validateForm()">
     <div class="form-group">
         <label for="title">Title</label>
         <input type="text" id="title" name="title"
@@ -20,4 +20,15 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
+
+<script>
+    function validateForm() {
+        const title = document.getElementById("title").value;
+        if (!title.trim()) {  // Verifica si el título está vacío o solo tiene espacios
+            alert("El campo de título es obligatorio.");
+            return false;  // Cancela el envío del formulario
+        }
+        return true;  // Permite el envío si el campo no está vacío
+    }
+</script>
 {% endblock %}
